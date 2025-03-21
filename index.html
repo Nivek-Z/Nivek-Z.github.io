@@ -201,15 +201,22 @@
             <h1 id="Proj0-2048"><a href="#Proj0-2048" class="headerlink" title="Proj0: 2048"></a>Proj0: 2048</h1><p>这个project是实现一个2048游戏  </p>
 <h3 id="一些印象"><a href="#一些印象" class="headerlink" title="一些印象"></a>一些印象</h3><ul>
 <li>其中有一个方法是判断棋盘上是否还存在可移动的空间，应该是最有含金量的一个方法了（因为整体框架已经被设计好）</li>
+<li>先<code>实现一列中一个方块向上的移动</code>–&gt;<code>实现一整列向上的移动</code>–&gt;<code>实现整个棋盘向上侵倒</code>–&gt;<code>通过实现旋转平面来重复利用向上倾倒的方法至四个方向</code></li>
+<li>这种分解问题的能力值得学习</li>
 </ul>
 <h1 id="Proj1A-LinkedListDeque61B"><a href="#Proj1A-LinkedListDeque61B" class="headerlink" title="Proj1A: LinkedListDeque61B"></a>Proj1A: LinkedListDeque61B</h1><p>用双向链表实现动态列表</p>
+<ul>
+<li>由一个<code>哨兵节点</code>构成的<code>循环</code>双向链表</li>
+</ul>
 <h1 id="Proj1B-ArrayDeque61B"><a href="#Proj1B-ArrayDeque61B" class="headerlink" title="Proj1B: ArrayDeque61B"></a>Proj1B: ArrayDeque61B</h1><p>用数组实现列表  </p>
-<h3 id="设计要点"><a href="#设计要点" class="headerlink" title="设计要点"></a>设计要点</h3><ul>
+<h3 id="总体思路"><a href="#总体思路" class="headerlink" title="总体思路"></a>总体思路</h3><ul>
 <li>用 <code>front</code> 和 <code>back</code> 分别标记头和尾，<code>size</code> 标记列表长度 </li>
 <li>总体设计和双向链表一样，也是循环的</li>
+<li>如果size增长到到临界值，重新创建一个数组并且复制元素</li>
+<li>这里我的方法是：重置front为0，back为size-1,分2次将原来的顺序复制到新数组</li>
 </ul>
 <h3 id="示例说明"><a href="#示例说明" class="headerlink" title="示例说明"></a>示例说明</h3><ul>
-<li>假设初始数组大小为 8，<code>front</code> 初始为 0</li>
+<li>假设<code>初始数组大小</code>为 8，<code>front</code> 初始为 0</li>
 <li>如果数组索引 0 处有一个 <code>&quot;zero&quot;</code>，调用 <code>addFirst(&quot;first&quot;)</code> 方法时，会在数组索引 7 的位置加入一个 <code>&quot;first&quot;</code></li>
 <li>此时让 <code>front</code> 减去 1，<code>front</code> 就会变为 -1，但在原始数组中 -1 无法访问到数组的末尾</li>
 <li>通过取模运算（<code>-1 % 数组大小</code>），得到索引 7，因此 <code>front</code> 变为 7</li>
